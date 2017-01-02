@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <!--<link rel="icon" type="image/png" href="/views/assets/img/favicon.ico">-->
+    <title>Jamaah - Muslim Future</title>
+
+    <!-- Bootstrap core CSS     -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Animation library for notifications   -->
+    <!-- <link href="/css/animate.min.css" rel="stylesheet" />
+    <!--  Anything else -->
+    <!--<link rel="stylesheet" href="/css/bootstrapValidator.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.standalone.min.css" integrity="sha256-RMGrTGgTqr/RK4mbfJ/9dLy8Dz0oetp7mREUfq7o3IA=" crossorigin="anonymous" />
+    <!--  Jamaah core CSS    -->
+    <link href="/css/jamaah.css" rel="stylesheet" />
+    <!--     Fonts and icons     -->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
+</head>
+
+<body>
+    <div class="main-panel">
+        <%- include('partials/header') %>
+            <div class="container">
+                <!-- Timeline -->
+                <div id="tmlnAgenda" class="timeline col-sm-6">
+
+                    <!-- Line component -->
+                    <div class="line text-muted"></div>
+
+                    <div class="separator text-muted">
+                        <time>Sabtu, 7 Jan 2016</time>
+                    </div>
+
+                    <% data.forEach(function(agenda) { %>
+                        <article class="panel panel-danger" data-toggle="collapse" data-target="#clps<%=agenda.id%>" data-parent="#tmlnAgenda" aria-expanded="false" aria-controls="clps<%=agenda.id%>">
+
+                            <div class="panel-heading icon">
+                                <i class="glyphicon glyphicon-heart"></i>
+                            </div>
+                            <div class="panel-heading">
+                                <h2 class="panel-title">
+                                    <%=agenda.khatibName%>
+                                </h2>
+                            </div>
+                            <div class="panel-body">
+                                <b>"<%=agenda.title%>"</b>
+                            </div>
+                            <div class="panel-footer hidden">
+                                <small>Footer is also supported!</small>
+                            </div>
+                            <div id="clps<%=agenda.id%>" class="collapse panel-body">
+                                <dl class="dl-horizontal">
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <dt><i class="glyphicon glyphicon-calendar"></i></dt>
+                                            <dd>
+                                                <p>
+                                                    <%=agenda.dateGregorian%><br/>
+                                                        <%=agenda.dateHijriah%>
+                                                </p>
+                                            </dd>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <dt><i class="glyphicon glyphicon-time"></i></dt>
+                                            <dd>
+                                                <p>
+                                                    <%=agenda.timeStart%>-
+                                                        <%=agenda.timeEnd%>
+                                                            <%=agenda.timeZone%>
+                                                </p>
+                                            </dd>
+                                        </div>
+                                    </div>
+                                    <dt><i class="glyphicon glyphicon-map-marker"></i></dt>
+                                    <dd>
+                                        <p>
+                                            <%=agenda.location%>,
+                                                <%=agenda.city%>
+                                        </p>
+                                    </dd>
+                                    <dt><i class="glyphicon glyphicon-tags"></i></dt>
+                                    <dd>
+                                        <p>
+                                            <%=agenda.tag%>
+                                        </p>
+                                    </dd>
+                                    <dt><i class="glyphicon glyphicon-question-sign"></i></dt>
+                                    <dd>
+                                        <p>
+                                            <%=agenda.description%>
+                                        </p>
+                                    </dd>
+                                    <dt><i class="glyphicon glyphicon-exclamation-sign"></i></dt>
+                                    <dd>
+                                        <p>
+                                            <%=agenda.notes%>
+                                        </p>
+                                    </dd>
+                                    <dt><i class="glyphicon glyphicon-user"></i></dt>
+                                    <dd>
+                                        <p>Ikhwan:
+                                            <%=agenda.CPBrother%><br/>Akhwat:
+                                                <%=agenda.CPSister%>
+                                        </p>
+                                    </dd>
+                                    <dt><i class="glyphicon glyphicon-home"></i></dt>
+                                    <dd>
+                                        <p>
+                                            <%=agenda.organizer%>
+                                        </p>
+                                    </dd>
+                                </dl>
+                            </div>
+
+                        </article>
+                        <% }) %>
+                </div>
+            </div>
+        </div>
+
+                            
+
+        <!--   Core JS Files   -->
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <!--  Notifications Plugin    -->
+        <script src="/js/bootstrap-notify.js"></script>
+        <!--  Google Maps Plugin    -->
+        <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
+        <!-- Bootstrap Validator Plugin -->
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.8/validator.js" integrity="sha256-+8yyE4bmxu2xkZctsezTF/4Htv7YpeQLC+PKhcvUfrE=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="/js/bootstrap-datepicker.min.js"></script>
+        <!-- <script src="/socket.io/socket.io.js"></script> -->
+        <!--<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <!-- Taawun Core javascript and methods for Demo purpose -->
+        <!--<script type="text/javascript" src="/views/assets/js/taawun.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+        <!-- Other Javascripts -->
+        <script type="text/javascript">
+            // var socket = io();
+            var method = "";
+            var amount = "";
+            var name = "";
+            var email = "";
+
+            $('#btnConfirmDonate').click(function(event) {
+                // socket.emit('notify-donate', name + " melakukan donasi Rp" + amount + " untuk Pembebasan Lahan Baitul Huda.");
+                console.log("emit: notify donate");
+                // return false;
+            });
+
+            // socket.on('notify-donate', function(msg) {
+            //     console.log('receive: ' + msg);
+
+            //     // Bootstrap Notify
+            //     $.notify({
+            //         icon: 'glyphicon glyphicon-heart',
+            //         message: '<p class="text-right"> ' + msg + '. <a href="/campaign">Click here</a></p>'
+            //     }, {
+            //         type: 'success',
+            //         timer: 2000,
+            //         placement: {
+            //             from: "bottom",
+            //             align: "right"
+            //         },
+            //     });
+            // });
+
+            $(document).ready(function() {
+
+                // Accordion animation & show-hide process
+                $('.collapse.in').prev('.panel-heading').addClass('active');
+                $('#bs-collapse')
+                    .on('show.bs.collapse', function(a) {
+                        $(a.target).prev('.panel-heading').addClass('active');
+                        $(a.target).prev('.panel-heading').removeClass('hidden');
+                    })
+                    .on('hide.bs.collapse', function(a) {
+                        $(a.target).prev('.panel-heading').removeClass('active');
+                    });
+
+
+
+
+
+                // Some event handlers
+
+                // Randomizing alias name
+                var names = ["Abdul Rahman", "Abdul Rahim", "Abdul Malik", "Abdul Quddus"];
+                $("#randomizeName").click(function() {
+                    $("#txbName").val(names[Math.floor(Math.random() * names.length)]);
+                    $("#txbName").focus();
+                    $("#txbName").blur();
+                    getName();
+                });
+
+                function getName() {
+                    $("#txtName").text($("#txbName").val());
+                    name = $("#txbName").val();
+                    console.log(name);
+                };
+            });
+        </script>
+</body>
+
+</html>

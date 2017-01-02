@@ -1,0 +1,48 @@
+ <script>
+//   window.fbAsyncInit = function() {
+//     FB.init({
+//       appId      : '1673216006306079',
+//       xfbml      : true,
+//       version    : 'v2.6'
+//     });
+//   };
+
+//   (function(d, s, id){
+//      var js, fjs = d.getElementsByTagName(s)[0];
+//      if (d.getElementById(id)) {return;}
+//      js = d.createElement(s); js.id = id;
+//      js.src = "//connect.facebook.net/en_US/sdk.js";
+//      fjs.parentNode.insertBefore(js, fjs);
+//    }(document, 'script', 'facebook-jssdk'));
+ </script>
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="container">
+        <div class="navbar-header navbar-taawun">
+
+            <a class="navbar-brand" href="/">Jamaah</a>
+            <a href="#" class="navbar-brand">
+                <i class="glyphicon glyphicon-search"></i>
+            </a>
+
+            <ul class="nav navbar-nav navbar-right pull-right">
+            <% if (typeof user == 'object') { %>
+                <li class="dropdown">                    
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">          
+                    <%= user.local.email %>
+                        <span class="badge">42</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/profile">My Account</a></li>
+                        <li><a href="/updateEvent">Input Kajian</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </li>
+            <% } else {%> 
+                <a class="navbar-brand" data-toggle="modal" data-target="#credModal">Login / Register</a>
+            <% } %>                                                             
+            </ul>
+        </div>
+    </div>
+</nav>

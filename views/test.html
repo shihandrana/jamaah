@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <!--<link rel="icon" type="image/png" href="/views/assets/img/favicon.ico">-->
+    <title>Jamaah - Muslim Future</title>
+
+    <!-- Bootstrap core CSS     -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Animation library for notifications   -->
+    <!-- <link href="/css/animate.min.css" rel="stylesheet" />
+    <!--  Anything else -->
+    <!--<link rel="stylesheet" href="/css/bootstrapValidator.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.standalone.min.css" integrity="sha256-RMGrTGgTqr/RK4mbfJ/9dLy8Dz0oetp7mREUfq7o3IA=" crossorigin="anonymous" />
+    <!--  Jamaah core CSS    -->
+    <link href="/css/jamaah.css" rel="stylesheet" />
+    <!--     Fonts and icons     -->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!--<link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>-->
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <!--<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
+</head>
+
+<body>
+    <div class="main-panel">
+        <%- include('partials/header') %>
+
+            <div class="container">
+                <button class="btn btn-large btn-primary" type="button" data-toggle="collapse" data-target="#clpsAdvancedSearch" aria-expanded="false" aria-controls="clpsAdvancedSearch">
+            Advanced Search
+            </button>
+                <div class="collapse" id="clpsAdvancedSearch">
+                    <div class="well col-xs-12 col-sm-8 col-md-4" style="display: inline-block">
+                        <div class="">
+                            <form action="/search" method="post" role="form">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="txbSrcCity" class="control-label">Kota</label>
+                                        <input id="txbSrcCity" name="txbSrcCity" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtSrcUstadz" class="control-label">Ustadz</label>
+                                        <input id="txtSrcUstadz" name="txtSrcUstadz" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group" hidden>
+                                        <label for="txtSrcDateRange" class="control-label">Periode</label> ??
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-success btn-fill">
+                                        Search</button>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <!-- Timeline -->
+                <div id="tmlnAgenda" class="timeline col-sm-6">
+
+                    <!-- Line component -->
+                    <div class="line text-muted"></div>
+
+                    <div class="separator text-muted">
+                        <time>Sabtu, 7 Jan 2016</time>
+                    </div>
+
+                    <% data.forEach(function(agenda) { %>
+                        <article class="panel <% agenda.tag == 'Khusus Akhwat' ? panel-danger : panel-primary  %>" data-toggle="collapse" data-target="#clps<%=agenda.id%>" data-parent="#tmlnAgenda" aria-expanded="false" aria-controls="clps<%=agenda.id%>">
+
+                            <div class="panel-heading icon">
+                                <i class="glyphicon glyphicon-heart"></i>
+                            </div>
+                            <div class="panel-heading">
+                                <h2 class="panel-title">
+                                    <%=agenda.khatibName%>
+                                </h2>
+                            </div>
+                            <div class="panel-body">
+                                <b>"<%=agenda.title%>"</b>
+                            </div>
+                            <div class="panel-footer hidden">
+                                <small>Footer is also supported!</small>
+                            </div>
+                            <div id="clps<%=agenda.id%>" class="collapse panel-body">
+                                <dl class="dl-horizontal">
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <dt><i class="glyphicon glyphicon-calendar"></i></dt>
+                                            <dd>
+                                                <p>
+                                                    <%=agenda.dateGregorian%><br/>
+                                                        <%=agenda.dateHijriah%>
+                                                </p>
+                                            </dd>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <dt><i class="glyphicon glyphicon-time"></i></dt>
+                                            <dd>
+                                                <p>
+                                                    <%=agenda.timeStart%>-
+                                                        <%=agenda.timeEnd%>
+                                                            <%=agenda.timeZone%>
+                                                </p>
+                                            </dd>
+                                        </div>
+                                    </div>
+                                    <dt><i class="glyphicon glyphicon-map-marker"></i></dt>
+                                    <dd>
+                                        <p>
+                                            <%=agenda.location%>,
+                                                <%=agenda.city%>
+                                        </p>
+                                    </dd>
+                                    <dt><i class="glyphicon glyphicon-tags"></i></dt>
+                                    <dd>
+                                        <p>
+                                            <%=agenda.tag%>
+                                        </p>
+                                    </dd>
+                                    <dt><i class="glyphicon glyphicon-question-sign"></i></dt>
+                                    <dd>
+                                        <p>
+                                            <%=agenda.description%>
+                                        </p>
+                                    </dd>
+                                    <dt><i class="glyphicon glyphicon-exclamation-sign"></i></dt>
+                                    <dd>
+                                        <p>
+                                            <%=agenda.notes%>
+                                        </p>
+                                    </dd>
+                                    <dt><i class="glyphicon glyphicon-user"></i></dt>
+                                    <dd>
+                                        <p>Ikhwan:
+                                            <%=agenda.CPBrother%><br/>Akhwat:
+                                                <%=agenda.CPSister%>
+                                        </p>
+                                    </dd>
+                                    <dt><i class="glyphicon glyphicon-home"></i></dt>
+                                    <dd>
+                                        <p>
+                                            <%=agenda.organizer%>
+                                        </p>
+                                    </dd>
+                                </dl>
+                            </div>
+
+                        </article>
+                        <% }) %>
+
+                            <div class="separator text-muted">
+                                <time>Minggu, 8 Jan 2016</time>
+                            </div>
+
+                            <article class="panel panel-default">
+
+                                <div class="panel-heading icon">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </div>
+
+                                <div class="panel-heading">
+                                    <h2 class="panel-title">Ust. Syafiq Riza Basalamah Lc.</h2>
+                                </div>
+
+                                <div class="panel-body">
+                                    Andai Aku Tak Menikah Dengannya
+                                </div>
+
+                                <div class="panel-footer hidden">
+                                    <small>Footer is also supported!</small>
+                                </div>
+
+                            </article>
+                            <!-- /Panel -->
+
+                            <!-- Panel -->
+                            <article class="panel panel-primary">
+
+                                <div class="panel-heading icon">
+                                    <i class="glyphicon glyphicon-user"></i>
+                                </div>
+
+                                <div class="panel-heading">
+                                    <h2 class="panel-title">Ust. Syafiq Riza Basalamah Lc.</h2>
+                                </div>
+
+                                <div class="panel-body">
+                                    Andai Aku Tak Menikah Dengannya
+                                </div>
+
+                                <div class="panel-footer hidden">
+                                    <small>Footer is also supported!</small>
+                                </div>
+
+                            </article>
+
+                            <!-- Separator -->
+                            <div class="separator text-muted">
+                                <time>25. 3. 2015</time>
+                            </div>
+
+                            <!-- Panel -->
+                            <article class="panel panel-success" hidden>
+
+                                <!-- Icon -->
+                                <div class="panel-heading icon" hidden>
+                                    <i class="glyphicon glyphicon-plus"></i>
+                                </div>
+                                <!-- /Icon -->
+
+                                <!-- Heading -->
+                                <div class="panel-heading" hidden>
+                                    <h2 class="panel-title">New content added</h2>
+                                </div>
+                                <!-- /Heading -->
+
+                                <!-- Body -->
+                                <div class="panel-body" hidden>
+                                    Anything you can do with <code>.panel</code>, can be done in timeline too!
+                                </div>
+                                <!-- /Body -->
+
+                                <!-- List group -->
+                                <ul class="list-group" hidden>
+                                    <li class="list-group-item">Like</li>
+                                    <li class="list-group-item">list</li>
+                                    <li class="list-group-item">groups</li>
+                                    <li class="list-group-item">and</li>
+                                    <li class="list-group-item">tables</li>
+                                </ul>
+
+                            </article>
+                            <!-- /Panel -->
+
+                            <!-- Panel -->
+                            <article class="panel panel-info panel-outline">
+
+                                <!-- Icon -->
+                                <div class="panel-heading icon">
+                                    <i class="glyphicon glyphicon-info-sign"></i>
+                                </div>
+                                <!-- /Icon -->
+
+                                <!-- Body -->
+                                <div class="panel-body">
+                                    That is all.
+                                </div>
+                                <!-- /Body -->
+
+                            </article>
+                            <!-- /Panel -->
+
+                </div>
+                <!-- /Timeline -->
+            </div>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <nav class="pull-left">
+                        <ul>
+                            <li>
+                                <a href="#">
+                                    Home
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Campaign
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Investment
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Forums
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <p class="copyright pull-right">
+                        &copy; 2016 <a href="http://www.creative-tim.com">Taawun</a>
+                    </p>
+                </div>
+            </footer>
+    </div>
+
+    <!-- line modal -->
+    <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="modalHeader1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="panel-group wrap" id="bs-collapse">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a id="modalHeader1" data-toggle="collapse" data-parent="#bs-collapse" href="#one">Tahap 1: Cara Donasi</a>
+                                </h4>
+                            </div>
+                            <div id="one" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <span> Bagaimana cara donasi yang Anda inginkan? </span>
+                                    <h4>Transfer Bank</h4>
+                                    <div class="container-fluid">
+
+                                    </div>
+                                    <button id="btnOne" data-toggle="collapse" data-parent="#bs-collapse" href="#two" class="btn btn-success btn-fill pull-right">Selanjutnya</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end of panel -->
+                        <div class="panel">
+                            <div class="panel-heading hidden">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#bs-collapse" href="#two">Tahap 2: Informasi Donasi</a>
+                                </h4>
+                            </div>
+                            <div id="two" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <span>Silahkan melengkapi data di bawah. </span>
+                                    <div class="container-fluid">
+                                        <form id="formDonate" data-toggle="validator" role="form">
+                                            <h4>Data Donatur</h4>
+                                            <fieldset>
+                                                <div class="form-group col-xs-12 col-md-9 has-feedback">
+                                                    <label for="txbName" class="control-label">Nama</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="txbName" placeholder="mis. Hamba Allah" data-toggle="tooltip" title="Nama harus alfabet, antara 3 dan 30 karakter" required>
+                                                        <div class="input-group-btn">
+                                                            <div id="randomizeName" class="btn btn-success" href="#"><span class="glyphicon glyphicon-refresh"></span>
+                                                            </div>
+                                                            <div class="btn btn-success" disabled href="#"><span class="glyphicon glyphicon-globe"></span>
+                                                            </div>
+                                                        </div>
+                                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                        <!--<div class="help-block with-errors"></div>-->
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-xs-12 col-md-9 has-feedback">
+                                                    <label for="txbEmail" class="control-label">Email</label>
+                                                    <input type="email" class="form-control" id="txbEmail" placeholder="mis. nama@gmail.com" title="Pastikan email yang aktif dan berfungsi karena akan digunakan untuk konfirmasi dan verifikasi data di kemudian hari" data-error="email nya tidak valid" required>
+
+                                                    <div class="help-block with-errors"></div>
+                                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                </div>
+                                            </fieldset>
+                                            <h4>Data Donasi</h4>
+                                            <fieldset>
+                                                <div class="form-group col-xs-12">
+                                                    <label for="txtDonationSlider" class="control-label">Jumlah Donasi</label>
+                                                    <div>
+                                                        <input id="txtDonationSlider" type="text" data-provide="slider" data-slider-ticks-snap-bounds="50000" data-slider-ticks="[100000, 250000, 500000, 1000000, 2000000, 3500000, 5000000]" ticks_positions="[100000, 250000, 500000, 1000000, 2000000, 3500000, 5000000]"
+                                                            data-slider-min="25000" data-slider-max="5000000" data-slider-step="25000" data-slider-value="50000" data-slider-rangeHighlights='[{ "start": 100000, "end": 350000 }]' />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group col-xs-12 col-sm-8">
+                                                    <label for="txbDonationAmount" class="control-label">Konfirmasi Jumlah Donasi</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-btn">
+                                                            <div class="btn dropdown-toggle" data-toggle="dropdown">Rp.<span class="caret"></span>
+                                                            </div>
+                                                            <ul class="dropdown-menu disabled">
+                                                                <li><a>US$</a></li>
+                                                                <li><a>MYR</a></li>
+                                                                <li><a>BND</a></li>
+                                                                <li role="separator" class="divider"></li>
+                                                                <li><a>Others...</a></li>
+                                                            </ul>
+                                                        </div>
+                                                        <input id="txbDonationAmount" type="text" class="form-control" placeholder="Amount" />
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                            <h4 id="headerCOD" hidden>Data Cash on Delivery (COD)</h4>
+                                            <fieldset id="fieldsetCOD" hidden>
+                                                <div class="form-group col-xs-12 col-md-8">
+                                                    <label for="txtCODMethod" class="control-label">Agen dan Lokasi</label>
+                                                    <select class="selectpicker col-xs-12" data-header="Select a condiment" style="display: none;">
+                                                        <option data-subtext="Abu Aliffa">Yayasan Baitul Huda, Duri</option>
+                                                        <option data-subtext="Abu Yusron">Jemput ke Rumah, Duri</option>
+                                                        <option data-subtext="Nurio Juliandatu">Chevron Main Office, Duri</option>
+                                                        <option data-divider="true"></option>
+                                                        <option data-subtext="Cak Wahyu">Jogjakarta</option>
+                                                        <option data-subtext="Wahyu">Malang</option>
+                                                    </select>
+                                                    <!-- <div class="dropdown">
+                                                        <button class="btn btn-default dropdown-toggle" type="button" id="txtCODMethod" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                            Abu Yusron - Yayasan Baitul Huda, Duri
+                                                            <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu" aria-labelledby="txtCODMethod">
+                                                            <li><a href="#" data-value="action">Abu Yusron - Yayasan Baitul Huda, Duri</a></li>
+                                                            <li><a href="#" data-value="another action">Abu Juvan - jemput ke rumah, Duri</a></li>
+                                                            <li><a href="#" data-value="separated link">Abu Muhammad - Chevron Main Office, Duri</a></li>
+                                                        </ul>
+                                                    </div> -->
+                                                </div>
+                                                <div class="form-group col-xs-12">
+                                                    <label for="txtDatePicker" class="control-label">Waktu</label>
+                                                    <div class="row">
+                                                        <div class="date col-xs-8 col-md-4">
+                                                            <div id="divDatePicker" class="input-group date">
+                                                                <span class="input-group-addon add-on">
+                                                                    <i class="glyphicon glyphicon-calendar"></i>
+                                                                </span>
+                                                                <input id="txtDatePicker" type="text" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="time col-xs-12 col-md-6">
+                                                            <div id="divTimePicker" class="input-group date">
+                                                                <span class="input-group-addon add-on">
+                                                                    <i class="fa fa-clock-o" aria-hidden="true"></i>
+                                                                </span>
+                                                                <select class="selectpicker">
+                                                                    <option>04</option>
+                                                                    <option>05</option>
+                                                                    <option>06</option>
+                                                                    <option>07</option>
+                                                                    <option>08</option>
+                                                                    <option>09</option>
+                                                                    <option>10</option>
+                                                                    <option>11</option>
+                                                                    <option>12</option>
+                                                                    <option>13</option>
+                                                                    <option>14</option>
+                                                                    <option>15</option>
+                                                                    <option>16</option>
+                                                                    <option>17</option>
+                                                                    <option>18</option>
+                                                                    <option>19</option>
+                                                                    <option>20</option>
+                                                                    <option>21</option>
+                                                                    <option>22</option>
+                                                                    <option>23</option>
+                                                                </select>
+                                                                <select class="selectpicker">
+                                                                    <option>00</option>
+                                                                    <option>05</option>
+                                                                    <option>10</option>
+                                                                    <option>15</option>
+                                                                    <option>20</option>
+                                                                    <option>25</option>
+                                                                    <option>30</option>
+                                                                    <option>35</option>
+                                                                    <option>40</option>
+                                                                    <option>45</option>
+                                                                    <option>50</option>
+                                                                    <option>55</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                        <button data-toggle="collapse" data-parent="#bs-collapse" href="#three" class="btn btn-success btn-fill pull-right">Selanjutnya</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel">
+                            <div class="panel-heading hidden">
+                                <h4 class="panel-title" />
+                                <a data-toggle="collapse" data-parent="#bs-collapse" href="#three">Tahap 3: Konfirmasi Donasi</a>
+                                </h>
+                            </div>
+                            <div id="three" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <span> Anda yakin dengan informasi di bawah? </span>
+                                    <div class="container-fluid" hidden>
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Nama</label>
+                                                <div class="col-sm-10">
+                                                    <p id="txtName" class="form-control-static"></p>
+                                                </div>
+                                                <label class="col-sm-2 control-label">Email</label>
+                                                <div class="col-sm-10">
+                                                    <p id="txtEmail" class="form-control-static"></p>
+                                                </div>
+                                                <label class="col-sm-2 control-label">Metode</label>
+                                                <div class="col-sm-10">
+                                                    <p id="txtDonation" class="form-control-static"></p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <dl class="dl-horizontal">
+                                        <dt>Nama</dt>
+                                        <dd>
+                                            <p id="txtName"></p>
+                                        </dd>
+                                        <dt>Email</dt>
+                                        <dd>
+                                            <p id="txtEmail"></p>
+                                        </dd>
+                                        <dt>Pembayaran</dt>
+                                        <dd>
+                                            <p id="txtDonation"></p>
+                                        </dd>
+                                    </dl>
+
+                                    <p class="form-control-static">Kami menghargai privasi data Anda. No rekening pengelola akan diberikan setelah Anda klik tombol "Donasi". Donasi Anda akan dianggap sah setelah pengelola proyek memastikan donasi tersebut valid.</p>
+                                    <div class="button-group pull-right">
+                                        <button type="submit" data-toggle="collapse" data-dismiss="modal" data-parent="#bs-collapse" class="btn btn-error btn-fill">Batal</button>
+                                        <button id="btnConfirmDonate" type="submit" data-toggle="collapse" data-dismiss="modal" data-parent="#bs-collapse" class="btn btn-success btn-fill">Donasi</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('partials/modal-cred') %>
+
+        <!--   Core JS Files   -->
+        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <!--  Notifications Plugin    -->
+        <script src="/js/bootstrap-notify.js"></script>
+        <!--  Google Maps Plugin    -->
+        <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
+        <!-- Bootstrap Validator Plugin -->
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.8/validator.js" integrity="sha256-+8yyE4bmxu2xkZctsezTF/4Htv7YpeQLC+PKhcvUfrE=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="/js/bootstrap-datepicker.min.js"></script>
+        <!-- <script src="/socket.io/socket.io.js"></script> -->
+        <!--<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <!-- Taawun Core javascript and methods for Demo purpose -->
+        <!--<script type="text/javascript" src="/views/assets/js/taawun.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+        <!-- Other Javascripts -->
+        <script type="text/javascript">
+            // var socket = io();
+            var method = "";
+            var amount = "";
+            var name = "";
+            var email = "";
+
+            $('#btnConfirmDonate').click(function(event) {
+                // socket.emit('notify-donate', name + " melakukan donasi Rp" + amount + " untuk Pembebasan Lahan Baitul Huda.");
+                console.log("emit: notify donate");
+                // return false;
+            });
+
+            // socket.on('notify-donate', function(msg) {
+            //     console.log('receive: ' + msg);
+
+            //     // Bootstrap Notify
+            //     $.notify({
+            //         icon: 'glyphicon glyphicon-heart',
+            //         message: '<p class="text-right"> ' + msg + '. <a href="/campaign">Click here</a></p>'
+            //     }, {
+            //         type: 'success',
+            //         timer: 2000,
+            //         placement: {
+            //             from: "bottom",
+            //             align: "right"
+            //         },
+            //     });
+            // });
+
+            $(document).ready(function() {
+
+                // Accordion animation & show-hide process
+                $('.collapse.in').prev('.panel-heading').addClass('active');
+                $('#bs-collapse')
+                    .on('show.bs.collapse', function(a) {
+                        $(a.target).prev('.panel-heading').addClass('active');
+                        $(a.target).prev('.panel-heading').removeClass('hidden');
+                    })
+                    .on('hide.bs.collapse', function(a) {
+                        $(a.target).prev('.panel-heading').removeClass('active');
+                    });
+
+
+
+
+
+                // Some event handlers
+
+                // Randomizing alias name
+                var names = ["Abdul Rahman", "Abdul Rahim", "Abdul Malik", "Abdul Quddus"];
+                $("#randomizeName").click(function() {
+                    $("#txbName").val(names[Math.floor(Math.random() * names.length)]);
+                    $("#txbName").focus();
+                    $("#txbName").blur();
+                    getName();
+                });
+
+                function getName() {
+                    $("#txtName").text($("#txbName").val());
+                    name = $("#txbName").val();
+                    console.log(name);
+                };
+            });
+        </script>
+</body>
+
+</html>

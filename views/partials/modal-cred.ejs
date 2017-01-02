@@ -1,0 +1,119 @@
+<div class="modal fade" id="credModal" tabindex="-1" role="dialog" aria-labelledby="modalHeader2" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="panel-group wrap" id="bs-collapse">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a id="modalHeader2">Login / Register</a>
+                            </h4>
+                        </div>
+                        <div class="panel-body content">
+                            <div class="row">
+                                <div class="col-md-8" style="border-right: 1px dotted #C2C2C2;padding-right: 30px;">                             
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#Login" data-toggle="tab">Login</a></li>
+                                        <li><a href="#Registration" data-toggle="tab">Registration</a></li>
+                                    </ul>
+                                    <div class="card">
+                                        <div class="tab-content content">
+                                            <div class="tab-pane fade in active" id="Login">
+                                                <form action="/login" method="post" role="form" data-toggle="validator">
+                                                    <fieldset>
+                                                        <div class="form-group col-xs-12 col-md-9 has-feedback">
+                                                            <label for="txtLogEmail" class="control-label">Email</label>
+                                                            <input id="txtLogEmail" name="txtLogEmail" type="email" class="form-control" placeholder="mis. nama@gmail.com" title="Pastikan email yang aktif dan berfungsi karena akan digunakan untuk konfirmasi dan verifikasi data di kemudian hari" data-error="email nya tidak valid"
+                                                                required>
+
+                                                            <div class="help-block with-errors"></div>
+                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                        </div>
+                                                        <div class="form-group col-xs-12 col-md-9 has-feedback">
+                                                            <label for="txtLogPassword" class="control-label">Password</label>
+                                                            <input id="txtLogPassword" name="txtLogPassword" type="password" class="form-control" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" placeholder="password sangat rahasia" required data-toggle="tooltip" title="Password harus alfanumerik minimal 8 karakter"
+                                                                data-error="pastikan alfanumerik minimal 8 karakter">
+                                                            <div class="help-block with-errors"></div>
+                                                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-2">
+                                                            </div>
+                                                            <div class="col-sm-10">
+                                                                <button type="submit" class="btn btn-success btn-fill">
+                                                                Login</button>
+                                                                <a href="javascript:;">Lupa password?</a>
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </form>
+                                            </div>
+                                            <div class="tab-pane" id="Registration">
+                                                <form action="/signup" method="post" role="form" data-toggle="validator">
+                                                <fieldset>
+                                                    <div class="form-group has-feedback">
+                                                        <label for="txtRegName" class="col-sm-2 control-label">Name</label>
+                                                        <input id="txtRegName" name="txtRegName" type="text" class="form-control" placeholder="Name" required />
+                                                        <div class="help-block with-errors"></div>
+                                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                    </div>
+                                                    <div class="form-group has-feedback">
+                                                        <label for="txtRegEmail" class="col-sm-2 control-label">Email</label>
+                                                        <input id="txtRegEmail" name="txtRegEmail" type="email" class="form-control" placeholder="Email" required />
+                                                        <div class="help-block with-errors"></div>
+                                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                    </div>
+                                                    <div class="form-group has-feedback">
+                                                        <label for="txtRegMobile" class="col-sm-2 control-label">Mobile</label>
+                                                        <input id="txtRegMobile" name="txtRegMobile" type="number" class="form-control" placeholder="Mobile" required />
+                                                        <div class="help-block with-errors"></div>
+                                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                    </div>
+                                                    <div class="form-group has-feedback">
+                                                        <label for="txtRegPassword" class="col-sm-2 control-label">Password</label>
+                                                        <input id="txtRegPassword" name="txtRegPassword" type="password" class="form-control" placeholder="Password" required />
+                                                        <div class="help-block with-errors"></div>
+                                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                                    </div>
+                                                    <div class="row">                                                                
+                                                        <div class="col-sm-10">
+                                                        <button type="submit" class="btn btn-success btn-fill">Daftar</button>
+                                                        <button type="button" class="btn btn-default btn-fill">Batal</button>
+                                                        </div>
+                                                    </div>
+                                                </fieldset>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <div id="OR" class="hidden-xs">
+                                            Atau
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class "card">
+                                        <div class="row text-center sign-with">
+                                            <div class="col-md-12">
+                                                <h3>
+                                                    Sign in with</h3>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="btn-group btn-group-justified">
+                                                    <a href="/auth/facebook" class="btn btn-primary btn-fill">Facebook</a>
+
+                                                    <a href="#" class="btn btn-danger btn-fill">
+                                                    Google</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
